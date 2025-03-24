@@ -105,21 +105,13 @@
     ],
     "outbounds": [
       {
-        "tag": "select",
-        "type": "selector",
-        "outbounds": [
-          "urltest",
-          "all"
-        ]
-      },
-      {
         "tag": "chatgpt",
         "type": "selector",
         "outbounds": [
+          "America",
           "TaiWan",
           "Singapore",
           "Japan",
-          "America",
           "Others"
         ],
         "default": "America"
@@ -132,6 +124,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -166,6 +159,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -191,11 +185,12 @@
         "tag": "Spotify",
         "type": "selector",
         "outbounds": [
+          "America",
           "HongKong",
           "TaiWan",
           "Singapore",
           "Japan",
-          "America",
+          "Korea",
           "Others"
         ],
         "default": "America"
@@ -204,10 +199,11 @@
         "tag": "TikTok",
         "type": "selector",
         "outbounds": [
+          "Japan",
+          "Korea",
           "HongKong",
           "TaiWan",
           "Singapore",
-          "Japan",
           "America"
         ],
         "default": "Japan"
@@ -220,6 +216,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -232,6 +229,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -245,6 +243,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -258,6 +257,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -271,6 +271,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -283,6 +284,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others"
         ]
@@ -295,6 +297,7 @@
           "TaiWan",
           "Singapore",
           "Japan",
+          "Korea",
           "America",
           "Others",
           "direct"
@@ -309,9 +312,11 @@
         ]
       },
       {
-        "tag": "all",
+        "tag": "select",
         "type": "selector",
-        "outbounds": []
+        "outbounds": [
+          "urltest"
+        ]
       },
       {
         "tag": "HongKong",
@@ -330,6 +335,11 @@
       },
       {
         "tag": "Japan",
+        "type": "selector",
+        "outbounds": []
+      },
+      {
+        "tag": "Korea",
         "type": "selector",
         "outbounds": []
       },
@@ -411,14 +421,14 @@
             },
             {
               "domain_keyword": [
-                "ushd.xmsl.org",
-                "cf.gtlx.org",
-                "mtalk.google.com",
                 "alicdn"
               ]
             },
             {
               "domain_suffix": [
+                "ushd.xmsl.org",
+                "cf.gtlx.org",
+                "mtalk.google.com",
                 "steamcontent.com",
                 "steamusercontent-a.akamaihd.net",
                 "cm.steampowered.com",
@@ -439,17 +449,11 @@
             {
               "port": [
                 3478,
+                5201,
                 19302,
                 23301,
                 22101,
-                22102,
-                20501,
-                21601,
-                21602,
-                21603,
-                21604,
-                21605,
-                21606
+                22102
               ]
             },
             {
