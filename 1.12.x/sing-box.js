@@ -35,11 +35,11 @@ config.outbounds.map(i => {
     i.outbounds.push(...getTags(proxies, /韩国|韓國|首尔|首爾|韩|韓|春川|KOR|KR|Kr|(?<!North\s)Korea/i))
   }
   if (['America'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /🇺🇸|US|us|美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|广美|United States/i))
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:Aus)).*(🇺🇸|US|us|美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|广美|United States)/i))
   }
   // below is for exclude rules
   if (['Others'].includes(i.tag)) {
-    const excludeRegex = /🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|韩国|🇰🇷|Korea|韩|KR/i;
+    const excludeRegex = /^(?!.*(?:Aus)).*(🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|韩国|🇰🇷|Korea|韩|KR)/i;
     i.outbounds.push(...getTags(proxies).filter(tag => !excludeRegex.test(tag)));
   }
   if (['urltest'].includes(i.tag)) {
