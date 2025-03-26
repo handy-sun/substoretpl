@@ -28,8 +28,7 @@
         {
           "tag": "dns_direct",
           "type": "https",
-          "server": "223.5.5.5",
-          "detour": "direct"
+          "server": "223.5.5.5"
         },
         {
           "tag": "dns_fakeip",
@@ -441,19 +440,10 @@
               "ip_is_private": true
             },
             {
-              "domain_keyword": [
-                "alicdn"
-              ]
-            },
-            {
               "domain_suffix": [
                 "ushd.xmsl.org",
                 "cf.gtlx.org",
                 "mtalk.google.com",
-                "steamcontent.com",
-                "steamusercontent-a.akamaihd.net",
-                "cm.steampowered.com",
-                "steamserver.net",
                 "askmanyai.cn",
                 "rust-lang.org",
                 "crates.io",
@@ -571,6 +561,7 @@
         },
         {
           "rule_set": [
+            "geosite-steam",
             "geosite-category-games",
             "geosite-dmm"
           ],
@@ -755,6 +746,13 @@
           "type": "remote",
           "format": "binary",
           "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
+          "download_detour": "direct"
+        },
+        {
+          "tag": "geosite-steam",
+          "type": "remote",
+          "format": "binary",
+          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/steam.srs",
           "download_detour": "direct"
         },
         {
