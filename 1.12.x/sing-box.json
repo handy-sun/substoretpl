@@ -389,7 +389,6 @@
     "route": {
       "default_domain_resolver": "dns_direct",
       "auto_detect_interface": true,
-      "override_android_vpn": true,
       "final": "select",
       "rules": [
         {
