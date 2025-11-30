@@ -16,23 +16,35 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['all', 'all-auto'].includes(i.tag)) {
+  if (['select'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
-  if (['hk', 'hk-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
+  if (['HongKong'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /香港|沪港|呼港|中港|HKT|HKBN|HGC|WTT|CMI|穗港|广港|京港|🇭🇰|HK|Hongkong|Hong Kong|HongKong|HONG KONG/i))
   }
-  if (['tw', 'tw-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇹🇼/i))
+  if (['TaiWan'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /台湾|台灣|臺灣|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN/i))
   }
-  if (['jp', 'jp-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
+  if (['Japan'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /日本|东京|東京|大阪|埼玉|京日|苏日|沪日|广日|上日|穗日|川日|中日|泉日|杭日|深日|JP|Japan|JAPAN/i))
   }
-  if (['sg', 'sg-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
+  if (['Singapore'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|狮|獅|sg|singapore|🇸🇬)/i))
   }
-  if (['us', 'us-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
+  if (['Korea'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /韩国|韓國|首尔|首爾|韩|韓|春川|KOR|KR|Kr|(?<!North\s)Korea/i))
+  }
+  if (['America'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:Aus)).*(🇺🇸|US|us|美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|广美|United States)/i))
+  }
+  // below is for exclude rules
+  if (['Others'].includes(i.tag)) {
+    const excludeRegex = /^(?!.*(?:Aus)).*(🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|韩国|🇰🇷|Korea|韩|KR)/i;
+    i.outbounds.push(...getTags(proxies).filter(tag => !excludeRegex.test(tag)));
+  }
+  if (['urltest'].includes(i.tag)) {
+    const excludeRegex = /网站|地址|剩余|流量|过期|到期|时间|有效|重置|官网/i;
+    i.outbounds.push(...getTags(proxies).filter(tag => !excludeRegex.test(tag)));
   }
 })
 
