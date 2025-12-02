@@ -125,34 +125,12 @@
         ]
       },
       {
-        "tag": "Twitter",
-        "type": "selector",
-        "outbounds": [
-          "urltest"
-        ]
-      },
-      {
-        "tag": "Facebook",
-        "type": "selector",
-        "outbounds": [
-          "urltest"
-        ]
-      },
-      {
         "tag": "BiliBili",
         "type": "selector",
         "outbounds": [
           "direct",
           "HongKong",
           "TaiWan"
-        ]
-      },
-      {
-        "tag": "Bahamut",
-        "type": "selector",
-        "outbounds": [
-          "TaiWan",
-          "select"
         ]
       },
       {
@@ -426,26 +404,8 @@
           "outbound": "Telegram"
         },
         {
-          "rule_set": [
-            "geoip-twitter",
-            "geosite-twitter"
-          ],
-          "outbound": "Twitter"
-        },
-        {
-          "rule_set": [
-            "geoip-facebook",
-            "geosite-facebook"
-          ],
-          "outbound": "Facebook"
-        },
-        {
           "rule_set": "geosite-bilibili",
           "outbound": "BiliBili"
-        },
-        {
-          "rule_set": "geosite-bahamut",
-          "outbound": "Bahamut"
         },
         {
           "rule_set": "geosite-spotify",
@@ -577,45 +537,10 @@
           "download_detour": "direct"
         },
         {
-          "tag": "geoip-twitter",
-          "type": "remote",
-          "format": "binary",
-          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
-          "download_detour": "direct"
-        },
-        {
-          "tag": "geosite-twitter",
-          "type": "remote",
-          "format": "binary",
-          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
-          "download_detour": "direct"
-        },
-        {
-          "tag": "geoip-facebook",
-          "type": "remote",
-          "format": "binary",
-          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/facebook.srs",
-          "download_detour": "direct"
-        },
-        {
-          "tag": "geosite-facebook",
-          "type": "remote",
-          "format": "binary",
-          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
-          "download_detour": "direct"
-        },
-        {
           "tag": "geosite-bilibili",
           "type": "remote",
           "format": "binary",
           "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
-          "download_detour": "direct"
-        },
-        {
-          "tag": "geosite-bahamut",
-          "type": "remote",
-          "format": "binary",
-          "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bahamut.srs",
           "download_detour": "direct"
         },
         {
