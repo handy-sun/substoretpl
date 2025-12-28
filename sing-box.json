@@ -151,6 +151,8 @@
         "tag": "Netflix",
         "type": "selector",
         "outbounds": [
+          "America",
+          "Singapore",
           "urltest"
         ]
       },
@@ -203,8 +205,7 @@
         "tag": "China",
         "type": "selector",
         "outbounds": [
-          "direct",
-          "select"
+          "direct"
         ]
       },
       {
@@ -351,7 +352,9 @@
                 "aur.archlinux.org",
                 "cimbar.org",
                 "exp-tas.com",
-                "bytednsdoc.com"
+                "bytednsdoc.com",
+                "testipv6.cn",
+                "ip938.com"
               ]
             },
             {
