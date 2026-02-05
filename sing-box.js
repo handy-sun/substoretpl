@@ -1,10 +1,21 @@
-const { type, name } = $arguments
+const { type, name, istun } = $arguments
 const compatible_outbound = {
   tag: 'COMPATIBLE',
   type: 'direct',
 }
+const tun_inbound = {
+  type: 'tun',
+  tag: 'tun-in',
+  address: [ '172.19.0.1/30', 'fdfe:dcba:9876::1/126' ],
+  auto_route: true,
+  auto_redirect: true,
+  strict_route: true,
+}
 
-let compatible
+function getTags(proxies, regex) {
+  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+}
+
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
   name,
@@ -24,6 +35,7 @@ config.outbounds.map(i => {
   }
 })
 
+let compatible
 config.outbounds.forEach(outbound => {
   if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
     if (!compatible) {
@@ -34,8 +46,9 @@ config.outbounds.forEach(outbound => {
   }
 });
 
-$content = JSON.stringify(config, null, 2)
-
-function getTags(proxies, regex) {
-  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+let tun_flag = /^1$|true/i.test(istun) ? true : false
+if (tun_flag) {
+  config.inbounds.push(tun_inbound)
 }
+
+$content = JSON.stringify(config, null, 2)
