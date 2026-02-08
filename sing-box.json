@@ -103,11 +103,8 @@
   ],
   "outbounds": [
     {
-      "tag": "China",
-      "type": "selector",
-      "outbounds": [
-        "Direct"
-      ]
+      "tag": "Direct",
+      "type": "direct"
     },
     {
       "tag": "Proxy",
@@ -124,10 +121,6 @@
       "interval": "3m",
       "tolerance": 50,
       "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Direct",
-      "type": "direct"
     }
   ],
   "route": {
@@ -221,7 +214,7 @@
             ]
           }
         ],
-        "outbound": "China"
+        "outbound": "Direct"
       },
       {
         "rule_set": "geosite-category-ads-all",
@@ -255,7 +248,7 @@
       },
       {
         "rule_set": "geosite-bilibili",
-        "outbound": "China"
+        "outbound": "Direct"
       },
       {
         "rule_set": [
@@ -274,11 +267,11 @@
           "geosite-apple",
           "geosite-amazon"
         ],
-        "outbound": "China"
+        "outbound": "Direct"
       },
       {
         "rule_set": "geosite-microsoft",
-        "outbound": "China"
+        "outbound": "Direct"
       },
       {
         "rule_set": [
@@ -286,7 +279,7 @@
           "geosite-category-games",
           "geosite-dmm"
         ],
-        "outbound": "China"
+        "outbound": "Direct"
       },
       {
         "rule_set": [
