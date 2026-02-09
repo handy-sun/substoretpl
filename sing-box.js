@@ -45,10 +45,10 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['Proxy'].includes(i.tag)) {
+  if (['🌐Proxy'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
-  if (['UrlTest'].includes(i.tag)) {
+  if (['⚡UrlTest'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
 })
