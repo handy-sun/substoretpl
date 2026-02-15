@@ -53,7 +53,7 @@
       },
       {
         "query_type": "CNAME",
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "rule_set": [
           "domainset/cdn",
           "non_ip/cdn",
@@ -130,7 +130,48 @@
         "action": "hijack-dns"
       },
       {
-        "clash_mode": "direct",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "clash_mode": "direct"
+          },
+          {
+            "ip_is_private": true
+          },
+          {
+            "domain_suffix": [
+              "647792.xyz",
+              "ushd.xmsl.org",
+              "cf.gtlx.org",
+              "mtalk.google.com",
+              "askmanyai.cn",
+              "rust-lang.org",
+              "crates.io",
+              "codeberg.org",
+              "godbolt.org",
+              "locyanfrp.cn",
+              "litiaotiao.cn",
+              "aur.archlinux.org",
+              "cimbar.org",
+              "exp-tas.com",
+              "bytednsdoc.com",
+              "testipv6.cn",
+              "ip938.com",
+              "sub1.all--green.com"
+            ]
+          },
+          {
+            "port": [
+              3478,
+              5201,
+              19302,
+              23301,
+              22101,
+              22102
+            ]
+          }
+        ],
         "outbound": "🎯Direct"
       },
       {
@@ -156,11 +197,11 @@
           "ssh",
           "bittorrent"
         ],
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "outbound": "🎯Direct"
       },
       {
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "rule_set": [
           "non_ip/apple_cdn",
           "non_ip/apple_cn",
@@ -174,7 +215,7 @@
         "outbound": "🎯Direct"
       },
       {
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "rule_set": [
           "non_ip/telegram",
           "non_ip/global",
@@ -194,7 +235,7 @@
         "method": "default"
       },
       {
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "rule_set": [
           "ip/domestic",
           "ip/china_ip",
@@ -203,14 +244,9 @@
         "outbound": "🎯Direct"
       },
       {
-        "clash_mode": "pro",
+        "clash_mode": "Custom",
         "rule_set": "ip/telegram",
         "outbound": "🌐Proxy"
-      },
-      {
-        "ip_is_private": true,
-        "clash_mode": "pro",
-        "outbound": "🎯Direct"
       }
     ],
     "rule_set": [
