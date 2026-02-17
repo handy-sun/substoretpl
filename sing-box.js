@@ -6,9 +6,10 @@ const args =
     : {
         type: 0,
         name: '_',
-        istun: 0,
+        tun: 0,
         mixport: default_mixport,
         clapi: default_clapi,
+        nightly: 0,
       }
 const compatible_outbound = {
   tag: 'COMPATIBLE',
@@ -36,11 +37,12 @@ console.log('[🚀sing-box] 开始...... args:', args)
 let {
   type = args.type || 0,
   name = args.name || '_',
-  istun = /^1$|true/i.test(args.istun) ? true : false,
-  mixport = args.mixport || istun ? 2134 : default_mixport,
-  clapi = args.clapi || istun ? 8790 : default_clapi,
+  tun = /^1$|true/i.test(args.tun),
+  mixport = args.mixport || tun ? 2134 : default_mixport,
+  clapi = args.clapi || tun ? 8790 : default_clapi,
+  nightly = /^1$|true/i.test(args.nightly),
 } = args
-sblog(`最终传入参数: { type: ${type}, name: ${name}, istun: ${istun}, mixport: ${mixport}, clapi: ${clapi} }`)
+sblog(`最终传入参数: { type: ${type}, name: ${name}, tun: ${tun}, mixport: ${mixport}, clapi: ${clapi}, nightly: ${nightly} }`)
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
   name,
@@ -80,10 +82,20 @@ config.outbounds.forEach(outbound => {
   }
 });
 
-if (istun) {
-  config.inbounds.push(tun_inbound)
-  config.route.rules[0].inbound = 'tun-in'
-  sblog(`更新 route.rules[0]: ${JSON.stringify(config.route.rules[0])}`)
+if (tun) {
+  if (config.route.rules[0]?.sniffer === undefined) {
+    config.inbounds.push(tun_inbound)
+    config.route.rules[0].inbound = 'tun-in'
+    sblog(`更新 route.rules[0]: ${JSON.stringify(config.route.rules[0])}`)
+  }
+}
+
+if (nightly) {
+  config.route.rules.unshift({
+    "network": "icmp",
+    "outbound": "🎯Direct"
+  })
+  sblog(`头部插入了icmp直连 route.rules[0]: ${JSON.stringify(config.route.rules[0])}`)
 }
 
 $content = JSON.stringify(config, null, 2)
