@@ -114,6 +114,30 @@
     "override_android_vpn": true,
     "rules": [
       {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "source_ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "action": "reject"
+      },
+      {
         "action": "sniff",
         "sniffer": [
           "http",
@@ -124,10 +148,6 @@
           "bittorrent"
         ],
         "timeout": "100ms"
-      },
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
       },
       {
         "type": "logical",
@@ -169,6 +189,17 @@
               23301,
               22101,
               22102
+            ]
+          },
+          {
+            "package_name": [
+              "com.kde.kdeconnect_tp",
+              "com.mercury.ipc",
+              "com.xiaomi.xmsf",
+              "com.ss.android.ugc.aweme",
+              "com.tencent.mm",
+              "com.tencent.mobileqq",
+              "com.carriez.flutter_hbb"
             ]
           }
         ],

@@ -154,16 +154,6 @@
         "mode": "or",
         "rules": [
           {
-            "package_name": "com.openai.chatgpt"
-          }
-        ],
-        "outbound": "🌐Proxy"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
             "clash_mode": "direct"
           },
           {
@@ -205,6 +195,15 @@
             "rule_set": [
               "geoip-cn",
               "geosite-cn"
+            ]
+          },
+          {
+            "process_name": [
+              "zerotier-one",
+              "frpc",
+              "ssh",
+              "status-client",
+              "/Applications/RustDesk.app/"
             ]
           }
         ],
