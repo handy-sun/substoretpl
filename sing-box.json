@@ -134,6 +134,13 @@
         "strategy": "prefer_ipv4"
       },
       {
+        "protocol": [
+          "ssh",
+          "bittorrent"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
         "type": "logical",
         "mode": "or",
         "rules": [

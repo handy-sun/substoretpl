@@ -6,10 +6,10 @@ const args =
     : {
         type: 0,
         name: '_',
-        tun: 0,
+        tun: false,
         mixport: default_mixport,
         clapi: default_clapi,
-        nightly: 0,
+        nightly: false,
       }
 const compatible_outbound = {
   tag: 'COMPATIBLE',
@@ -37,10 +37,10 @@ console.log('[🚀sing-box] 开始...... args:', args)
 let {
   type = args.type || 0,
   name = args.name || '_',
-  tun = /^1$|true/i.test(args.tun),
+  tun = /^1$|true/i.test(args.tun) ? true : false,
   mixport = args.mixport || tun ? 2134 : default_mixport,
   clapi = args.clapi || tun ? 8790 : default_clapi,
-  nightly = /^1$|true/i.test(args.nightly),
+  nightly = /^1$|true/i.test(args.nightly) ? true : false,
 } = args
 sblog(`最终传入参数: { type: ${type}, name: ${name}, tun: ${tun}, mixport: ${mixport}, clapi: ${clapi}, nightly: ${nightly} }`)
 let config = JSON.parse($files[0])
@@ -82,7 +82,7 @@ config.outbounds.forEach(outbound => {
   }
 });
 
-if (tun) {
+if (tun === "1" || tun === true) {
   if (config.route.rules[0]?.sniffer === undefined) {
     config.inbounds.push(tun_inbound)
     config.route.rules[0].inbound = 'tun-in'
@@ -90,7 +90,7 @@ if (tun) {
   }
 }
 
-if (nightly) {
+if (nightly === "1" || nightly === true) {
   config.route.rules.unshift({
     "network": "icmp",
     "outbound": "🎯Direct"
