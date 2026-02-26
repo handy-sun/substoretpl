@@ -165,54 +165,33 @@
           },
           {
             "ip_is_private": true
-          },
-          {
-            "domain_suffix": [
-              "647792.xyz",
-              "ushd.xmsl.org",
-              "cf.gtlx.org",
-              "mtalk.google.com",
-              "askmanyai.cn",
-              "rust-lang.org",
-              "crates.io",
-              "codeberg.org",
-              "godbolt.org",
-              "locyanfrp.cn",
-              "litiaotiao.cn",
-              "aur.archlinux.org",
-              "cimbar.org",
-              "exp-tas.com",
-              "bytednsdoc.com",
-              "testipv6.cn",
-              "ip938.com",
-              "sub1.all--green.com"
-            ]
-          },
-          {
-            "port": [
-              3478,
-              5201,
-              19302,
-              23301,
-              22101,
-              22102
-            ]
-          },
-          {
-            "rule_set": [
-              "geoip-cn",
-              "geosite-cn"
-            ]
-          },
-          {
-            "process_name": [
-              "zerotier-one",
-              "frpc",
-              "ssh",
-              "status-client",
-              "/Applications/RustDesk.app/"
-            ]
           }
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "ip_cidr": [
+          "45.221.114.55/32",
+          "103.149.93.9/32"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-domain",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-port",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-pname",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
         ],
         "outbound": "🎯Direct"
       },
@@ -467,6 +446,27 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-domain",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/domain.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-port",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/port.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-pname",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/pname.json",
         "download_detour": "🎯Direct"
       }
     ]
