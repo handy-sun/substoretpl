@@ -10,6 +10,7 @@ const args =
         mixport: default_mixport,
         clapi: default_clapi,
         nightly: false,
+        linux: false,
       }
 const compatible_outbound = {
   tag: 'COMPATIBLE',
@@ -41,8 +42,9 @@ let {
   mixport = args.mixport || tun ? 2134 : default_mixport,
   clapi = args.clapi || tun ? 8790 : default_clapi,
   nightly = /^1$|true/i.test(args.nightly) ? true : false,
+  linux = /^1$|true/i.test(args.linux) ? true : false,
 } = args
-sblog(`最终传入参数: { type: ${type}, name: ${name}, tun: ${tun}, mixport: ${mixport}, clapi: ${clapi}, nightly: ${nightly} }`)
+sblog(`最终传入参数: { type: ${type}, name: ${name}, tun: ${tun}, mixport: ${mixport}, clapi: ${clapi}, nightly: ${nightly}, linux: ${linux} }`)
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
   name,
@@ -84,7 +86,14 @@ config.outbounds.forEach(outbound => {
 
 if (tun === "1" || tun === true) {
   if (config.route.rules[0]?.sniffer === undefined) {
-    config.inbounds.push(tun_inbound)
+    if (linux === "1" || linux === true) {
+      const linux_tun_inbound = tun_inbound
+      linux_tun_inbound.auto_redirect = true
+      sblog(`开启了 tun 的 auto_redirect(仅Linux支持) 功能`)
+      config.inbounds.push(linux_tun_inbound)
+    } else {
+      config.inbounds.push(tun_inbound)
+    }
     config.route.rules[0].inbound = 'tun-in'
     sblog(`更新 route.rules[0]: ${JSON.stringify(config.route.rules[0])}`)
   }
