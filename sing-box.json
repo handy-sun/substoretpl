@@ -141,19 +141,7 @@
         "outbound": "🎯Direct"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "clash_mode": "global"
-          },
-          {
-            "domain_suffix": [
-              "tbtool.cn",
-              "youtubei.googleapis.com"
-            ]
-          }
-        ],
+        "clash_mode": "global",
         "outbound": "🌐Proxy"
       },
       {
