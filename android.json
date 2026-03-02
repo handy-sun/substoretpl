@@ -158,70 +158,43 @@
           },
           {
             "ip_is_private": true
-          },
-          {
-            "domain_suffix": [
-              "647792.xyz",
-              "ushd.xmsl.org",
-              "cf.gtlx.org",
-              "mtalk.google.com",
-              "askmanyai.cn",
-              "rust-lang.org",
-              "crates.io",
-              "codeberg.org",
-              "godbolt.org",
-              "locyanfrp.cn",
-              "litiaotiao.cn",
-              "aur.archlinux.org",
-              "cimbar.org",
-              "exp-tas.com",
-              "bytednsdoc.com",
-              "testipv6.cn",
-              "ip938.com",
-              "sub1.all--green.com"
-            ]
-          },
-          {
-            "port": [
-              3478,
-              5201,
-              19302,
-              23301,
-              22101,
-              22102
-            ]
-          },
-          {
-            "package_name": [
-              "com.kde.kdeconnect_tp",
-              "com.mercury.ipc",
-              "com.xiaomi.xmsf",
-              "com.ss.android.ugc.aweme",
-              "com.tencent.mm",
-              "com.tencent.mobileqq",
-              "com.carriez.flutter_hbb"
-            ]
           }
         ],
         "outbound": "🎯Direct"
       },
       {
+        "ip_cidr": [
+          "45.221.114.55/32",
+          "103.149.93.9/32"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-domain",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-port",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-packages",
+        "outbound": "🎯Direct"
+      },
+      {
         "protocol": "quic",
-        "action": "reject",
-        "method": "default"
+        "action": "reject"
       },
       {
         "port": 853,
-        "action": "reject",
-        "method": "default"
+        "action": "reject"
       },
       {
         "rule_set": [
           "domainset/reject",
           "non_ip/reject"
         ],
-        "action": "reject",
-        "method": "default"
+        "action": "reject"
       },
       {
         "protocol": [
@@ -262,8 +235,7 @@
       },
       {
         "rule_set": "ip/reject",
-        "action": "reject",
-        "method": "default"
+        "action": "reject"
       },
       {
         "clash_mode": "Custom",
@@ -282,118 +254,139 @@
     ],
     "rule_set": [
       {
-        "type": "remote",
         "tag": "domainset/reject",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/domainset/reject.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/reject",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/reject.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/apple_cdn",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/apple_cdn.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/microsoft_cdn",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/microsoft_cdn.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/apple_cn",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/apple_cn.json"
       },
       {
-        "type": "remote",
         "tag": "domainset/download",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/domainset/download.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/download",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/download.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/domestic",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/domestic.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/direct",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/direct.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/microsoft",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/microsoft.json"
       },
       {
-        "type": "remote",
         "tag": "domainset/cdn",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/domainset/cdn.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/cdn",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/cdn.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/telegram",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/telegram.json"
       },
       {
-        "type": "remote",
         "tag": "non_ip/global",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/non_ip/global.json"
       },
       {
-        "type": "remote",
         "tag": "ip/reject",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/ip/reject.json"
       },
       {
-        "type": "remote",
         "tag": "ip/domestic",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/ip/domestic.json"
       },
       {
-        "type": "remote",
         "tag": "ip/china_ip",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/ip/china_ip.json"
       },
       {
-        "type": "remote",
         "tag": "ip/china_ip_ipv6",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/ip/china_ip_ipv6.json"
       },
       {
-        "type": "remote",
         "tag": "ip/telegram",
+        "type": "remote",
         "format": "source",
         "url": "https://ruleset.skk.moe/sing-box/ip/telegram.json"
+      },
+      {
+        "tag": "hdy-domain",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/domain.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-port",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/port.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-packages",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/packages.json",
+        "download_detour": "🎯Direct"
       }
     ]
   }
