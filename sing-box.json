@@ -61,13 +61,7 @@
         "rewrite_ttl": 1
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "clash_mode": "global"
-          }
-        ],
+        "clash_mode": "global",
         "server": "dns_proxy"
       },
       {
@@ -135,8 +129,9 @@
       },
       {
         "protocol": [
+          "bittorrent",
           "ssh",
-          "bittorrent"
+          "stun"
         ],
         "outbound": "🎯Direct"
       },
