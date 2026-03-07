@@ -2,7 +2,7 @@
   "log": {
     "disabled": false,
     "level": "info",
-    "timestamp": false
+    "timestamp": true
   },
   "experimental": {
     "cache_file": {
@@ -12,8 +12,7 @@
       "path": "tun-cache-rule-v1.db"
     },
     "clash_api": {
-      "external_controller": "[::]:9191",
-      "secret": "box"
+      "external_controller": "[::]:9191"
     }
   },
   "dns": {
@@ -71,7 +70,6 @@
           "geosite-cn",
           "geosite-apple",
           "geosite-microsoft-cn",
-          "geosite-samsung",
           "geosite-private"
         ],
         "strategy": "prefer_ipv4",
@@ -101,7 +99,7 @@
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "::",
+          "server": "127.0.0.1",
           "server_port": 6789
         }
       },
@@ -135,7 +133,7 @@
     {
       "tag": "mixed",
       "type": "mixed",
-      "listen": "::",
+      "listen": "127.0.0.1",
       "listen_port": 6789,
       "reuse_addr": true,
       "tcp_fast_open": true,
@@ -159,19 +157,20 @@
     {
       "tag": "⚡UrlTest",
       "type": "urltest",
+      "outbounds": [],
       "url": "http://www.gstatic.com/generate_204",
       "interval": "3m",
       "tolerance": 50,
-      "outbounds": [],
       "interrupt_exist_connections": true
     }
   ],
   "route": {
-    "auto_detect_interface": true, 
+    "default_domain_resolver": "dns_direct",
+    "auto_detect_interface": true,
     "final": "🌐Proxy",
     "rules": [
       {
-        "inbound": "mixed",
+        "inbound": "mixed-in",
         "action": "sniff"
       },
       {
@@ -179,62 +178,102 @@
         "action": "hijack-dns"
       },
       {
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      },
+      {
         "protocol": "quic",
         "action": "reject"
+      },
+      {
+        "protocol": [
+          "bittorrent",
+          "ssh",
+          "stun"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "🌐Proxy"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "clash_mode": "Direct"
+          },
+          {
+            "ip_is_private": true
+          }
+        ],
+        "outbound": "🎯Direct"
       },
       {
         "domain": [
           "direct-tag.oneoh.cloud"
         ],
-        "domain_suffix": [],
-        "ip_cidr": [],
+        "ip_cidr": [
+          "45.221.114.55/32",
+          "103.149.93.9/32"
+        ],
         "outbound": "🎯Direct"
       },
       {
-        "domain": [
-          "proxy-tag.oneoh.cloud"
+        "rule_set": "hdy-domain",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-port",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "hdy-pname",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
         ],
-        "domain_suffix": [],
-        "ip_cidr": [],
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geosite-apple",
+          "geosite-microsoft-cn",
+          "geosite-private"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geosite-steam",
+          "geosite-category-games",
+          "geosite-dmm"
+        ],
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": "geosite-bilibili",
+        "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geoip-telegram",
+          "geosite-telegram"
+        ],
         "outbound": "🌐Proxy"
       },
       {
-        "domain_suffix": [
-          ".tiktok.com"
-        ],
         "rule_set": [
           "geosite-tiktok",
           "geosite-linkedin",
-          "geosite-linkedin-cn"
+          "geosite-linkedin-cn",
+          "geosite-geolocation-!cn"
         ],
         "outbound": "🌐Proxy"
-      },
-      {
-        "domain": [
-          "captive.oneoh.cloud",
-          "captive.apple.com",
-          "nmcheck.gnome.org",
-          "www.msftconnecttest.com",
-          "connectivitycheck.gstatic.com"
-        ],
-        "domain_suffix": [
-          "local",
-          "lan",
-          "localdomain",
-          "localhost",
-          "bypass.local",
-          "captive.apple.com"
-        ],
-        "rule_set": [
-          "geoip-cn",
-          "geosite-cn",
-          "geosite-apple",
-          "geosite-microsoft-cn",
-          "geosite-samsung",
-          "geosite-private"
-        ],
-        "ip_is_private": true,
-        "outbound": "🎯Direct"
       }
     ],
     "rule_set": [
@@ -245,8 +284,8 @@
         "url": "https://jsdelivr.oneoh.cloud/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs"
       },
       {
-        "type": "remote",
         "tag": "geosite-geolocation-cn",
+        "type": "remote",
         "format": "source",
         "url": "https://jsdelivr.oneoh.cloud/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-cn.json"
       },
@@ -263,8 +302,8 @@
         "url": "https://jsdelivr.oneoh.cloud/gh/SagerNet/sing-geosite@rule-set/geosite-linkedin@cn.srs"
       },
       {
-        "type": "remote",
         "tag": "geosite-geolocation-!cn",
+        "type": "remote",
         "format": "source",
         "url": "https://jsdelivr.oneoh.cloud/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.json"
       },
@@ -287,10 +326,11 @@
         "url": "https://jsdelivr.oneoh.cloud/gh/SagerNet/sing-geosite@rule-set/geosite-microsoft@cn.srs"
       },
       {
-        "tag": "geosite-samsung",
+        "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://jsdelivr.oneoh.cloud/gh/SagerNet/sing-geosite@rule-set/geosite-samsung.srs"
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
+        "download_detour": "🎯Direct"
       },
       {
         "tag": "geosite-telegram",
@@ -309,6 +349,62 @@
         "type": "remote",
         "format": "binary",
         "url": "https://jsdelivr.oneoh.cloud/gh/SagerNet/sing-geosite@rule-set/geosite-tiktok.srs"
+      },
+      {
+        "tag": "AdGuardSDNSFilter",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilterSingBox.srs",
+        "download_detour": "🌐Proxy"
+      },
+      {
+        "tag": "geosite-bilibili",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "geosite-steam",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/steam.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "geosite-category-games",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "geosite-dmm",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/dmm.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-domain",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/domain.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-port",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/port.json",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "hdy-pname",
+        "type": "remote",
+        "format": "source",
+        "url": "https://codeberg.org/handy/proxyconfig/raw/branch/main/sing-box/direct/pname.json",
+        "download_detour": "🎯Direct"
       }
     ]
   }
