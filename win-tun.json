@@ -99,8 +99,8 @@
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 6789
+          "server": "::",
+          "server_port": 2134
         }
       },
       "mtu": 9000,
@@ -133,8 +133,8 @@
     {
       "tag": "mixed",
       "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 6789,
+      "listen": "::",
+      "listen_port": 2134,
       "reuse_addr": true,
       "tcp_fast_open": true,
       "set_system_proxy": false
@@ -171,7 +171,16 @@
     "rules": [
       {
         "inbound": "mixed-in",
-        "action": "sniff"
+        "action": "sniff",
+        "sniffer": [
+          "http",
+          "tls",
+          "quic",
+          "dns",
+          "ssh",
+          "bittorrent"
+        ],
+        "timeout": "200ms"
       },
       {
         "protocol": "dns",
