@@ -114,6 +114,18 @@
     "override_android_vpn": true,
     "rules": [
       {
+        "action": "sniff",
+        "sniffer": [
+          "http",
+          "tls",
+          "quic",
+          "dns",
+          "ssh",
+          "bittorrent"
+        ],
+        "timeout": "100ms"
+      },
+      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -138,18 +150,6 @@
         "action": "reject"
       },
       {
-        "action": "sniff",
-        "sniffer": [
-          "http",
-          "tls",
-          "quic",
-          "dns",
-          "ssh",
-          "bittorrent"
-        ],
-        "timeout": "100ms"
-      },
-      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -170,15 +170,11 @@
         "outbound": "🎯Direct"
       },
       {
-        "rule_set": "hdy-domain",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-port",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-packages",
+        "rule_set": [
+          "hdy-domain",
+          "hdy-port",
+          "hdy-packages"
+        ],
         "outbound": "🎯Direct"
       },
       {

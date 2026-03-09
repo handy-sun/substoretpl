@@ -117,7 +117,16 @@
     "final": "🌐Proxy",
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff",
+        "sniffer": [
+          "http",
+          "tls",
+          "quic",
+          "dns",
+          "ssh",
+          "bittorrent"
+        ],
+        "timeout": "200ms"
       },
       {
         "protocol": "dns",
@@ -126,6 +135,17 @@
       {
         "action": "resolve",
         "strategy": "prefer_ipv4"
+      },
+      {
+        "source_ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "action": "reject"
       },
       {
         "protocol": [
