@@ -155,6 +155,15 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "🚀LowLatency",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "⚡UrlTest",
       "type": "urltest",
       "outbounds": [],
@@ -189,6 +198,17 @@
       {
         "action": "resolve",
         "strategy": "prefer_ipv4"
+      },
+      {
+        "source_ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "action": "reject"
       },
       {
         "protocol": "quic",
@@ -230,15 +250,11 @@
         "outbound": "🎯Direct"
       },
       {
-        "rule_set": "hdy-domain",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-port",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-pname",
+        "rule_set": [
+          "hdy-domain",
+          "hdy-port",
+          "hdy-pname"
+        ],
         "outbound": "🎯Direct"
       },
       {
@@ -247,6 +263,14 @@
           "geosite-cn"
         ],
         "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geoip-google",
+          "geosite-google",
+          "geosite-github"
+        ],
+        "outbound": "🚀LowLatency"
       },
       {
         "rule_set": [
@@ -358,6 +382,27 @@
         "type": "remote",
         "format": "binary",
         "url": "https://jsdelivr.oneoh.cloud/gh/SagerNet/sing-geosite@rule-set/geosite-tiktok.srs"
+      },
+      {
+        "tag": "geoip-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "geosite-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+        "download_detour": "🎯Direct"
+      },
+      {
+        "tag": "geosite-github",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
+        "download_detour": "🎯Direct"
       },
       {
         "tag": "AdGuardSDNSFilter",

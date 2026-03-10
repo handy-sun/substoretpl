@@ -102,6 +102,15 @@
       ]
     },
     {
+      "tag": "🚀LowLatency",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "⚡UrlTest",
       "type": "urltest",
       "outbounds": [],
@@ -180,15 +189,11 @@
         "outbound": "🎯Direct"
       },
       {
-        "rule_set": "hdy-domain",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-port",
-        "outbound": "🎯Direct"
-      },
-      {
-        "rule_set": "hdy-pname",
+        "rule_set": [
+          "hdy-domain",
+          "hdy-port",
+          "hdy-pname"
+        ],
         "outbound": "🎯Direct"
       },
       {
@@ -197,6 +202,14 @@
           "geosite-cn"
         ],
         "outbound": "🎯Direct"
+      },
+      {
+        "rule_set": [
+          "geoip-google",
+          "geosite-google",
+          "geosite-github"
+        ],
+        "outbound": "🚀LowLatency"
       },
       {
         "rule_set": "geosite-category-ads-all",
@@ -210,15 +223,6 @@
       },
       {
         "rule_set": "geosite-openai",
-        "outbound": "🌐Proxy"
-      },
-      {
-        "rule_set": [
-          "geosite-youtube",
-          "geoip-google",
-          "geosite-google",
-          "geosite-github"
-        ],
         "outbound": "🌐Proxy"
       },
       {
@@ -265,6 +269,7 @@
       },
       {
         "rule_set": [
+          "geosite-youtube",
           "geosite-hbo",
           "geosite-primevideo"
         ],

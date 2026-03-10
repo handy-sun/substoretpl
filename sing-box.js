@@ -68,8 +68,11 @@ config.outbounds.map(i => {
   if (['🌐Proxy'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
+  if (['🚀LowLatency'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:aote|Rfchost)).*/i))
+  }
   if (['⚡UrlTest'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies))
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:aote)).*/i))
   }
 })
 
@@ -85,7 +88,7 @@ config.outbounds.forEach(outbound => {
 });
 
 if (tun === "1" || tun === true) {
-  if (config.route.rules[0]?.sniffer === undefined) {
+  if (config.route.rules[0]?.action === 'sniff') {
     if (linux === "1" || linux === true) {
       const linux_tun_inbound = tun_inbound
       linux_tun_inbound.auto_redirect = true
