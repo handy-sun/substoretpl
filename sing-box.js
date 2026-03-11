@@ -85,7 +85,7 @@ config.outbounds.forEach(outbound => {
 });
 
 if (tun === "1" || tun === true) {
-  if (config.route.rules[0]?.sniffer === undefined) {
+  if (config.route.rules[0]?.action === 'sniff') {
     if (linux === "1" || linux === true) {
       const linux_tun_inbound = tun_inbound
       linux_tun_inbound.auto_redirect = true
