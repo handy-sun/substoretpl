@@ -69,7 +69,7 @@ config.outbounds.map(i => {
     i.outbounds.push(...getTags(proxies))
   }
   if (['🚀LowLatency'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?!.*(?:aote|Rfchost)).*/i))
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:Rfchost)).*/i))
   }
   if (['⚡UrlTest'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /^(?!.*(?:aote)).*/i))

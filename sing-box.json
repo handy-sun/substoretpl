@@ -99,15 +99,13 @@
       "type": "selector",
       "outbounds": [
         "⚡UrlTest"
-      ]
+      ],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "🚀LowLatency",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "3m",
-      "tolerance": 50,
       "interrupt_exist_connections": true
     },
     {
